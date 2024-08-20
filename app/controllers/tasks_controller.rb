@@ -1,11 +1,10 @@
 class TasksController < ApplicationController
-
+  before_action :set_task, only: [:show, :destroy, :edit, :update]
   def index
     @tasks = Task.all
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -20,15 +19,16 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
     @task.update(tasks_params)
     redirect_to tasks_path
+  end
 
-    # redirect_to task_path(@task)
+  def destroy
+    @task.destroy
+    redirect_to tasks_path, status: :see_other
   end
 
   private
@@ -36,5 +36,9 @@ class TasksController < ApplicationController
   def tasks_params
     # Will below will raise ActiveModel::ForbiddenAttributesError
     params.require(:task).permit(:title, :details, :completed)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 end
