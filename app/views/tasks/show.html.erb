@@ -3,3 +3,6 @@
 <h3>Description: <%= @task.details %></h3>
 
 <p>Task is completed? <%= @task.completed %></p>
+
+
+<%=link_to "Edit this task", edit_path(@task)%>
