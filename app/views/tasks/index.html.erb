@@ -1,0 +1,8 @@
+<h1>My Tasks</h1>
+<% @tasks.each do |task| %>
+  <ul>
+    <%= check_box_tag "task_#{task.id}" %>
+    <li> <%= task.title %> </li>
+  </ul>
+
+<% end %>
