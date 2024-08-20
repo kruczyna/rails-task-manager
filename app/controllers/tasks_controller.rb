@@ -4,4 +4,8 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
+  def find
+    @task = Task.find(params[:id])
+  end
+
 end
